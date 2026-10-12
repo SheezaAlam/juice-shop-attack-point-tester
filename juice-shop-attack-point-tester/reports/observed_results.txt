@@ -1,0 +1,36 @@
+Observed terminal output transcribed from the operator's pasted run (12 October 2026).
+
+Target: http://192.168.52.1:3000
+
+[TEST 1] Directory Listing Check
+Requested: http://192.168.52.1:3000/ftp/
+HTTP status: 200
+RESULT: POTENTIAL FINDING
+Details: Directory indicators found: acquisitions.md, incident-support.kdbx
+Recommendation: Review directory access and exposed files.
+
+[TEST 2] Public File Access Check
+Requested: http://192.168.52.1:3000/ftp/acquisitions.md
+HTTP status: 200
+RESULT: REVIEW REQUIRED
+Details: File returned HTTP 200; content type: text/markdown; charset=UTF-8.
+Recommendation: Review the file contents and access policy.
+
+[TEST 3] Security Headers Check
+Requested: http://192.168.52.1:3000
+HTTP status: 200
+[PRESENT] X-Content-Type-Options: nosniff
+[PRESENT] X-Frame-Options: SAMEORIGIN
+[MISSING] Content-Security-Policy
+RESULT: REVIEW REQUIRED
+Details: Missing headers: Content-Security-Policy
+Recommendation: Review which headers are appropriate.
+[SKIPPED] HSTS assessment: target URL uses HTTP, so absence of HSTS is not counted as a finding.
+
+TEST RUN SUMMARY
+Checks attempted: 3
+Items flagged for review: 3
+Note: Flags are not confirmed vulnerabilities.
+Report saved to: reports/juice_shop_report_20261012_135721.txt
+
+Evidence limitation: This is a transcription of pasted terminal output, not a screenshot or independently captured raw network trace. Add a screenshot of the terminal run and copy the actual generated report from the Kali machine before final submission.
